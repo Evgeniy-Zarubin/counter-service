@@ -3,7 +3,6 @@ import org.skypro.counter.model.article.Article;
 import org.skypro.counter.model.product.Product;
 import org.skypro.counter.model.search.Searchable;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,24 +16,28 @@ public class StorageService {
     public StorageService() {
         this.products = new HashMap<>();
         this.articles = new HashMap<>();
-        initTestData();
+        this.initTestData();
     }
 
     private void initTestData() {
 
-        Product product1 = new Product("Геймпад", UUID.randomUUID());
-        Product product2 = new Product("Ноутбук", UUID.randomUUID());
+        Product product1 = new Product(UUID.randomUUID(), "Геймпад");
+        Product product2 = new Product(UUID.randomUUID(), "Ноутбук");
         products.put(product1.getId(), product1);
         products.put(product2.getId(), product2);
 
-        Article article1 = new Article("Статья о Геймпаде", "Геймпад со стиками", UUID.randomUUID());
-        Article article2 = new Article("Статья о Ноутбуке", "Ноутбук от Acer", UUID.randomUUID());
+        Article article1 = new Article( UUID.randomUUID(),"Статья о Геймпаде", "Геймпад со стиками");
+        Article article2 = new Article( UUID.randomUUID(),"Статья о Ноутбуке", "Ноутбук от Acer");
         articles.put(article1.getId(), article1);
         articles.put(article2.getId(), article2);
     }
 
     public Collection<Product> getAllProducts() {
         return products.values();
+    }
+
+    public Optional<Product> getProductById(UUID id){
+        return Optional.ofNullable(products.get(id));
     }
 
     public Collection<Article> getAllArticles() {

@@ -1,26 +1,31 @@
 package org.skypro.counter.controller;
 
 import org.skypro.counter.model.article.Article;
+import org.skypro.counter.model.basket.UserBasket;
 import org.skypro.counter.model.product.Product;
-import org.skypro.counter.model.search.SearchService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.skypro.counter.service.BasketService;
+import org.skypro.counter.service.SearchService;
+import org.springframework.web.bind.annotation.*;
 import org.skypro.counter.service.StorageService;
 
 import javax.naming.directory.SearchResult;
 import java.util.Collection;
-import java.util.List;
+import java.util.UUID;
 
 @RestController
+@RequestMapping ("/shop")
 public class ShopController {
 
     private final StorageService storageService;
+    private final SearchService searchService;
+    private final BasketService basketService;
 
-    @Autowired
-    public ShopController(StorageService storageService) {
+    public ShopController(StorageService storageService,
+                          SearchService searchService,
+                          BasketService basketService) {
         this.storageService = storageService;
+        this.searchService = searchService;
+        this.basketService = basketService;
     }
 
     @GetMapping("/products")
@@ -33,9 +38,20 @@ public class ShopController {
         return storageService.getAllArticles();
     }
 
-
     @GetMapping("/search")
-    public List<SearchResult> search(@RequestParam String pattern) {
+    public Collection<SearchResult> search(@RequestParam String pattern) {
         return searchService.search(pattern);
     }
+
+    @GetMapping("/basket/{id}")
+    public String addProduct (@PathVariable("id")UUID id) {
+        basketService.addProduct(id);
+        return "Продукт добавлен.";
+    }
+
+    @GetMapping ("/basket")
+    public UserBasket getUserBasket (){
+        return basketService.getUserBasket();
+    }
+
 }

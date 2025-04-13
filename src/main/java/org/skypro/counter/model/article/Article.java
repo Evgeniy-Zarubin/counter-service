@@ -9,7 +9,7 @@ public class Article implements org.skypro.counter.model.search.Searchable {
     private final String textArticle;
     private final UUID id;
 
-    public Article (String nameArticle, String textArticle, UUID id){
+    public Article (UUID id, String nameArticle, String textArticle){
         this.nameArticle = nameArticle;
         this.textArticle = textArticle;
         this.id = id;

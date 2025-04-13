@@ -1,16 +1,16 @@
 package org.skypro.counter.model.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import org.skypro.counter.model.search.Searchable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Product implements org.skypro.counter.model.search.Searchable {
+public class Product implements Searchable {
     protected final String nameProduct;
-    private final UUID id;
+    protected final UUID id;
 
 
-    public Product(String nameProduct, UUID id) {
+    public Product(UUID id, String nameProduct) {
         if (nameProduct == null || nameProduct.trim().isEmpty()) {
             throw new IllegalArgumentException("Название продукта не должно быть пустым или null");
         }

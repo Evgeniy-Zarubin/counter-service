@@ -1,10 +1,9 @@
-package org.skypro.counter.model.search;
-import org.skypro.counter.service.StorageService;
+package org.skypro.counter.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.naming.directory.SearchResult;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 public class SearchService {
@@ -21,6 +20,6 @@ public class SearchService {
                 .stream()
                 .filter(searchable -> searchable.getName().contains(query))
                 .map(SearchResult::fromSearchable)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
