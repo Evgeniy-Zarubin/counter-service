@@ -1,4 +1,5 @@
 package org.skypro.counter.service;
+import org.skypro.counter.Exception.NoSuchProductException;
 import org.skypro.counter.model.article.Article;
 import org.skypro.counter.model.product.Product;
 import org.skypro.counter.model.search.Searchable;
@@ -37,6 +38,9 @@ public class StorageService {
     }
 
     public Optional<Product> getProductById(UUID id){
+        if (!products.containsKey(id)) {
+            throw new NoSuchProductException("Product with ID " + id + " not found");
+        }
         return Optional.ofNullable(products.get(id));
     }
 

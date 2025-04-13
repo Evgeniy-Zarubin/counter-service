@@ -3,13 +3,14 @@ package org.skypro.counter.controller;
 import org.skypro.counter.model.article.Article;
 import org.skypro.counter.model.basket.UserBasket;
 import org.skypro.counter.model.product.Product;
+import org.skypro.counter.model.search.SearchResult;
 import org.skypro.counter.service.BasketService;
 import org.skypro.counter.service.SearchService;
 import org.springframework.web.bind.annotation.*;
 import org.skypro.counter.service.StorageService;
 
-import javax.naming.directory.SearchResult;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -39,7 +40,7 @@ public class ShopController {
     }
 
     @GetMapping("/search")
-    public Collection<SearchResult> search(@RequestParam String pattern) {
+    public List<SearchResult> search(@RequestParam String pattern) {
         return searchService.search(pattern);
     }
 

@@ -12,13 +12,13 @@ public class UserBasket {
 
     public UserBasket(List<BasketItem> items) {
         this.items = Objects.requireNonNull(items, "Items list cannot be null");
-        this.total = calculateTotal(items);
+        this.total = getTotalCost(items);
     }
 
-    public double getTotalCost() {
-        return product.values().stream()
-                .flatMap(Collection::stream)
-                .mapToDouble(Product::getPrice)
+    public double getTotalCost(List<BasketItem> items) {
+        return items.stream()
+                .filter(Objects::nonNull)
+                .mapToDouble(m -> m.getProduct().getPrice())
                 .sum();
     }
 

@@ -1,7 +1,6 @@
 package org.skypro.counter.service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.naming.directory.SearchResult;
+import org.skypro.counter.model.search.SearchResult;
 import java.util.List;
 
 
@@ -10,7 +9,7 @@ public class SearchService {
 
     private final StorageService storageService;
 
-    @Autowired
+
     public SearchService(StorageService storageService) {
         this.storageService = storageService;
     }

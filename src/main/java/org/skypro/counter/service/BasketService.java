@@ -1,5 +1,6 @@
 package org.skypro.counter.service;
 
+import org.skypro.counter.Exception.NoSuchProductException;
 import org.skypro.counter.model.basket.BasketItem;
 import org.skypro.counter.model.basket.ProductBasket;
 import org.skypro.counter.model.basket.UserBasket;
@@ -19,7 +20,7 @@ public class BasketService {
 
     public void addProduct(UUID id) {
         if (storageService.getProductById(id).isEmpty()){
-            throw new IllegalArgumentException("No such product");
+            throw new NoSuchProductException("No such product");
         }
         basket.addProduct(id);
     }
