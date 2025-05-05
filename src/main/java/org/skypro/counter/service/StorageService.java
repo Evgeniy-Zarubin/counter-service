@@ -39,7 +39,7 @@ public class StorageService {
 
     public Optional<Product> getProductById(UUID id){
         if (!products.containsKey(id)) {
-            throw new NoSuchProductException("Product with ID " + id + " not found");
+            throw new NoSuchProductException(id);
         }
         return Optional.ofNullable(products.get(id));
     }

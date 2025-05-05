@@ -11,12 +11,7 @@ import java.util.UUID;
 @Component
 @SessionScope
 public class ProductBasket {
-    private final Map<UUID, Integer> products;
-
-
-    public ProductBasket(Map<UUID, Integer> products) {
-        this.products = new HashMap<>();
-    }
+    private final Map<UUID, Integer> products = new HashMap<>();;
 
     public void addProduct (UUID product) {
         if (products.containsKey(product)) {

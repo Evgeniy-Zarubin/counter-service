@@ -45,9 +45,8 @@ public class ShopController {
     }
 
     @GetMapping("/basket/{id}")
-    public String addProduct (@PathVariable("id")UUID id) {
+    public void addProduct (@PathVariable("id")UUID id) {
         basketService.addProduct(id);
-        return "Продукт добавлен.";
     }
 
     @GetMapping ("/basket")

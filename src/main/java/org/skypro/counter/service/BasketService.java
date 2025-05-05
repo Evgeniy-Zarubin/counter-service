@@ -20,7 +20,7 @@ public class BasketService {
 
     public void addProduct(UUID id) {
         if (storageService.getProductById(id).isEmpty()){
-            throw new NoSuchProductException("No such product");
+            throw new NoSuchProductException(id);
         }
         basket.addProduct(id);
     }
